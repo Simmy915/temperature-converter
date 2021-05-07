@@ -1,4 +1,6 @@
+#import tkinter
 from tkinter import *
+from tkinter import messagebox
 
 window = Tk()
 window.title('Temperature Convector')
@@ -6,20 +8,20 @@ window.minsize(width=500, height=500)
 
 celcius_var= IntVar
 fahrenheit_var =IntVar
-
+#inserting the Fahrenheit labels
 l1 = LabelFrame(window,text='Celcius To Fahrenheit',padx=20, pady=20)
 l1.grid(row=2, column=0)
-
+#restricting Entry 1 state and access
 Entry1 = Entry(l1,state='disable')
 Entry1.grid(row=4, column=0)
 
 def cel_active():
         Entry2.configure(state='disable')
 Entry1.configure(state='normal')
-
+#creating a button to activate celcius to Fahrenheit, vice versa
 btn_active = Button(window,text='Activate -Celcius to Fahrenheit', command=cel_active)
 btn_active.grid(row=6, column=0)
-
+#sizing and positiong the buttons
 l2 = LabelFrame(window, text='Fahrenheit to Celcius',padx=20, pady=20)
 l2.grid(row=2, column=5)
 
@@ -33,10 +35,19 @@ def far_active():
 btn_active1 = Button(window,text='Activate -Fahrenheit to Celcius', command=far_active)
 btn_active1.grid(row=6, column=5)
 
-
+#creating an exit button with a yes or no options
 
 def exit():
-        window.destroy()
+        msg_box = messagebox.askquestion("Quiting Program", "Are you sure you want to quit(YES or NO)", icon="warning")
+        if msg_box == "yes":
+                window.destroy()
+        else:
+                pass
+
+
+
+
+
 exit_btn = Button(text = "Quit", command=exit)
 exit_btn.grid(row=9, column=6)
 
